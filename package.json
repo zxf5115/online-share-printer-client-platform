@@ -1,0 +1,29 @@
+{
+	"uni-app": {
+		"scripts": {
+			"mp-weixin:dev": {
+				"title": "打印机用户端:dev",
+				"env": {
+					"UNI_PLATFORM": "mp-weixin",
+					"ENV": "development",
+					"API_URL": "https://organization.vstown.cc/api/"
+				}
+			},
+			"mp-weixin:pro": {
+				"title": "打印机用户端:pro",
+				"env": {
+					"UNI_PLATFORM": "mp-weixin",
+					"ENV": "production",
+					"API_URL": "https://organization.vstown.cc/api/"
+				}
+			}
+		}
+	},
+	"dependencies": {
+		"vuex-persistedstate": "^4.1.0"
+	},
+	"devDependencies": {
+		"eslint": "^8.2.0",
+		"eslint-config-airbnb": "^19.0.0"
+	}
+}
