@@ -6,7 +6,7 @@
 				"env": {
 					"UNI_PLATFORM": "mp-weixin",
 					"ENV": "development",
-					"API_URL": "https://organization.vstown.cc/api/"
+					"API_URL": "https://client.vstown.cc/api/"
 				}
 			},
 			"mp-weixin:pro": {
@@ -14,7 +14,7 @@
 				"env": {
 					"UNI_PLATFORM": "mp-weixin",
 					"ENV": "production",
-					"API_URL": "https://organization.vstown.cc/api/"
+					"API_URL": "https://client.vstown.cc/api/"
 				}
 			}
 		}

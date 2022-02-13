@@ -2,6 +2,7 @@
   <div class="p-cell fl fd-r jc-sb ai-ctr" :style="{
     'background': bg,
     'padding'   : padding,
+    'height'    : height
   }">
     <label :style="{
       'color': labelColor,
@@ -42,5 +43,8 @@ export default {
 <style lang="scss" scoped>
 .p-cell-label {
   width: auto;
+}
+.p-cell-right {
+  word-break:break-all;
 }
 </style>

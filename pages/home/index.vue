@@ -1,5 +1,5 @@
 <template>
-	<div class="index fl">
+	<div class="index fl" >
 	    <p-nav title="共享打印机"/>
 	    <div class="ctn">
             <div class="top fl ai-ctr jc-ctr" @click="jumpPrinter()">
@@ -14,36 +14,24 @@
 
 <script>
 export default {
-    onLaunch: function() {
-    },
-    onShow: function() {
-        
-    },
-    onHide: function() {
-        
-    },
-    created() {
-        let that =this;
-        uni.login({
-			provider:'weixin',
-			success:function(loginRes) {
-			// 获取用户信息
-			    uni.getUserInfo({
-				    provider:'weixin',
-					success:function(infoRes){
-                        console.log(infoRes);
-				    	console.log(that.yonghuwx)
-					}
-				});
-			}
-		});
-    },
     methods: {
         jumpPrinterList() {
             uni.navigateTo({url: '/pages/mine/printerList/index'})
         },
         jumpPrinter() {
-
+            uni.scanCode({
+                success: function (res) {
+                    if (res.scanType != 'QR_CODE') {
+                        this.$u.toast('错误的二维码');
+                        return;
+                    }
+                    // TODO:这里用的测试打印机数据
+                    let token = 'efcsCWI3k2a5XYhr8BQXQtajKPTO21f06+KDFZ5AHepDCt0mtxm/JuVa9DjXGGO7tKmVirtrWPjO32mp0Irt6G3HPSiJsi2HupD2cu4=';
+                    uni.navigateTo({
+                        url: `/pages/home/order/first?token=${token}`
+                    });
+                }
+            });
         }
     },
 }

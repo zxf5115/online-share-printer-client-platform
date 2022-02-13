@@ -8,6 +8,7 @@ const modulesFiles = require.context('./modules', true, /\.js$/)
 
 // 分模块加载
 const modules = modulesFiles.keys().reduce((modules, modulePath) => {
+  console.log(modules, modulePath);
   const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
   const value = modulesFiles(modulePath)
   modules[moduleName] = value.default
@@ -21,7 +22,6 @@ const store = new Vuex.Store({
     plugins: [  
         // 可以有多个持久化实例  
         createPersistedState({  
-          key: 'share_pointer_org_data',  // 状态保存到本地的 key   
           reducer: state => ({ // 需要持久化存储的数据
             user: state.user,
           }),

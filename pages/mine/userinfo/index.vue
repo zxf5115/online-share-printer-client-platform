@@ -1,34 +1,18 @@
 <template>
-    <div>
-        <p-nav title="用户信息" :line="false" />
-        <div class="ctn">
-            <div class="top fl jc-ctr ai-ctr">
-                <image src="https://cdn.uviewui.com/uview/album/1.jpg" />
+    <div style="height: 100vh;">
+        <p-nav title="个人信息" :line="false" />
+        <div class="ctn fl jc-sb">
+            <div>
+                <div class="top fl jc-ctr ai-ctr">
+                    <image src="https://cdn.uviewui.com/uview/album/1.jpg" />
+                </div>
+                <p-cell label="昵称：" label-size="30rpx" label-color="#B0B0B0" padding="20rpx 40rpx">
+                    <u--input placeholder="请输入昵称" border="bottom" clearable v-model="source.name" />
+                </p-cell>
+                <p-cell label="手机号：" label-size="30rpx" label-color="#B0B0B0" padding="20rpx 40rpx">
+                    <u--input placeholder="请输入手机号" border="bottom" clearable v-model="source.name" />
+                </p-cell>
             </div>
-            <p-cell label="姓名：" padding="20rpx 40rpx">
-                <u--input placeholder="请输入姓名" border="bottom" clearable v-model="source.name" />
-            </p-cell>
-            <p-cell label="性别：" padding="20rpx 40rpx">
-                <u--input placeholder="请输入性别" border="bottom" clearable v-model="source.name" />
-            </p-cell>
-            <p-cell label="所在地：" padding="20rpx 40rpx">
-                <u--input placeholder="请输入所在地" border="bottom" clearable v-model="source.name" />
-            </p-cell>
-            <p-cell label="年龄：" padding="20rpx 40rpx">
-                <u--input placeholder="请输入年龄" border="bottom" clearable v-model="source.name" />
-            </p-cell>
-            <p-cell label="手机号：" padding="20rpx 40rpx">
-                <u--input placeholder="请输入手机号" border="bottom" clearable v-model="source.name" />
-            </p-cell>
-            <p-cell label="微信号：" padding="20rpx 40rpx">
-                <u--input placeholder="请输入微信号" border="bottom" clearable v-model="source.name" />
-            </p-cell>
-            <p-cell label="邮箱：" padding="20rpx 40rpx">
-                <u--input placeholder="请输入邮箱" border="bottom" clearable v-model="source.name" />
-            </p-cell>
-            <p-cell label="上级分销商电话：" padding="20rpx 40rpx" value>
-                <u--input placeholder="请输入上级分销商电话" border="bottom" clearable v-model="source.name" />
-            </p-cell>
             <div class="submit">
                 <button>保存</button>
             </div>
@@ -54,7 +38,7 @@ export default {
 }
 </script>
 <style>
-/* ::v-deep page { background-color: rgb(255, 255, 255) !important; } */
+::v-deep page { background-color: rgb(255, 255, 255) !important; }
 ::v-deep .p-cell-label {
     width: 224rpx !important;
 }
@@ -62,7 +46,19 @@ export default {
 <style lang="scss" scoped>
 
 .ctn {
-    background: #fff;
+    height: calc(100% - 160rpx);
+    /deep/ .p-cell {
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            width: calc(100% - 60rpx);
+            left: 30rpx;
+            height: 1px;
+            background: #F0F0F0;
+            bottom: 0;
+        }
+    }
     .top {
         margin: 62rpx 0 40rpx 0;
         height: 212rpx;

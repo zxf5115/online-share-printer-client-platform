@@ -208,11 +208,12 @@ div, p, span {
   -webkit-box-orient: vertical;
 }
 .ol-t-1 {
+  text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
-  word-wrap: break-word;
-  white-space: normal !important;
+  display: -webkit-box;
   -webkit-line-clamp: 1;
+  line-clamp: 1;
   -webkit-box-orient: vertical;
 }
 
