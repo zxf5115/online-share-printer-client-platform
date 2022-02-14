@@ -1,5 +1,5 @@
 <template>
-    <web-view :src="`http://127.0.0.1:8848/SharePointer/static/webview/file/index.html?token=${token}`" @message="handleMessage"></web-view>
+    <web-view :src="`https://web.vstown.cc/file/index.html?token=${token}`" @message="handleMessage"></web-view>
 </template>
 
 <script>
