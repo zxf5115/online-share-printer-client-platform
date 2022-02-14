@@ -4,8 +4,8 @@
         <div class="ctn">
             <div class="top">
                 <image class="bg" :src="require('@/static/mine/index/banner.png')" />
-                <image class="ava" src="https://cdn.uviewui.com/uview/album/1.jpg" />
-                <span class="username">阿高</span>
+                <image class="ava" :src="userinfo.avatar" />
+                <span class="username">{{userinfo.nickname}}</span>
                 <p class="edit fl jc-sb fd-r ai-ctr" @click="jump({path: '/pages/mine/userinfo/index'})">
                     编辑个人资料
                     <image src="../../static/icon/edit.png" />
@@ -23,12 +23,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-    onShow: function() {
-        
-    },
-    onHide: function() {
-        
+    computed: {
+        ...mapGetters(['userinfo']),
     },
     data() {
         return {
@@ -36,7 +34,7 @@ export default {
                 {
                     icon: require('../../static/mine/index/item1.png'),
                     title: '打印记录',
-                    path: '/pages/mine/myDevice/index',
+                    path: '/pages/mine/printerList/index',
                 }, {
                     icon: require('../../static/mine/index/item2.png'),
                     title: '意见反馈',

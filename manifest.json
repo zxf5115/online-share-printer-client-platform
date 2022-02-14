@@ -1,6 +1,6 @@
 {
     "name" : "SharePointer",
-    "appid" : "wxe011d49d77124e2b",
+    "appid" : "wxb8cfb77546b84cd1",
     "description": "",
     "versionName": "1.0.0",
     "versionCode": 1,
@@ -99,17 +99,22 @@
     },
     "quickapp": {},
     "mp-weixin": {
-        "appid": "wxe011d49d77124e2b",
+        "appid": "wxb8cfb77546b84cd1",
         "setting": {
             "urlCheck": false,
-            "es6": false,
-            "minified": false,
+            "es6": true,
+            "minified": true,
             "postcss": false
         },
         "optimization": {
             "subPackages": true
         },
-        "runmode" : "liberate", // 开启分包优化后，必须配置资源释放模式
+        "permission": {
+            "scope.userLocation": {
+                "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+            }
+        },
+        "runmode" : "liberate", 
         "usingComponents": true
     },
     "mp-alipay": {

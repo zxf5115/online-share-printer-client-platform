@@ -2,7 +2,7 @@
 	<div class="fl" style="height: 100vh;">
 	    <p-nav :title="isLogin ? ' ' : '授权'"/>
         <!-- 获取失败情况 -->
-        <div class="loading fl jc-ctr ai-ctr" v-if="errorFlag" @click="login">
+        <div class="loading fl jc-ctr ai-ctr" v-if="errorFlag" @click="errorFlag = false">
             <u-empty mode="wifi" icon="https://cdn.uviewui.com/uview/empty/wifi.png" text="获取用户信息失败,点击重试!"/>
         </div>
         <!-- 获取用户信息 -->
@@ -42,23 +42,31 @@ export default {
         return {
             readFlag: [],
             errorFlag: false,
+            code: void 0,
         }
     },
-    created() {
+    async created() {
         if (this.isLogin && this.hasUserinfo) { // 已登录就直接跳转到home/index
             this.jumpHome();
         } else if (!this.isLogin) { // 未登录就去登录
-            // this.login();
+            this.code = await this.$api('user').wxLogin();
+            if (!this.code) return this.$u.toast('获取用户信息失败，请检查网络配置');
         }
     },
     methods: {
         login(...args) {
+            uni.showLoading();
             this.errorFlag = false;
+            let param = args[0]||{};
+            param.code = this.code;
+            param.type = 1;
             this.$store.dispatch('user/login', args[0]||{}).then(res => {
+                uni.hideLoading();
                 if (this.isLogin && this.hasUserinfo) { // 已登录就直接跳转到home/index
                     this.jumpHome();
                 }
             }).catch(err => {
+                uni.hideLoading();
                 this.errorFlag = true;
             });
         },
@@ -73,17 +81,22 @@ export default {
             //     this.errorFlag = true;
             // })
         },
-        getPhoneNumber(e) {
+        async getPhoneNumber(e) {
             console.log(e);
-            return;
+            if (!e.detail.encryptedData) return;
+            uni.showLoading();
             this.$store.dispatch('user/login', {
                 type: 2,
-                code: e.detail.encryptedData
+                data: e.detail.encryptedData,
+                iv: e.detail.iv,
+                code: this.code,
             }).then(res => {
+                uni.hideLoading();
                 if (this.isLogin && this.hasUserinfo) { // 已登录就直接跳转到home/index
                     this.jumpHome();
                 }
             }).catch(err => {
+                uni.hideLoading();
                 this.errorFlag = true;
             });
         },

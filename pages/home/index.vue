@@ -21,12 +21,15 @@ export default {
         jumpPrinter() {
             uni.scanCode({
                 success: function (res) {
+                    console.log(res);
                     if (res.scanType != 'QR_CODE') {
                         this.$u.toast('错误的二维码');
                         return;
                     }
                     // TODO:这里用的测试打印机数据
-                    let token = 'efcsCWI3k2a5XYhr8BQXQtajKPTO21f06+KDFZ5AHepDCt0mtxm/JuVa9DjXGGO7tKmVirtrWPjO32mp0Irt6G3HPSiJsi2HupD2cu4=';
+                    let token = res.result;
+                    
+                    //'efcsCWI3k2a5XYhr8BQXQtajKPTO21f06+KDFZ5AHepDCt0mtxm/JuVa9DjXGGO7tKmVirtrWPjO32mp0Irt6G3HPSiJsi2HupD2cu4=';
                     uni.navigateTo({
                         url: `/pages/home/order/first?token=${token}`
                     });

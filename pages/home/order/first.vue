@@ -1,11 +1,5 @@
 <template>
-    <web-view :src="`http://192.168.1.51:8080/static/webview/file/index.html?token=${token}`" @message="handleMessage"></web-view>
-
-	<!-- <div class="file" >
-	    <p-nav title="提交订单"/>
-        <div class="btn"><button @click="getMessageFile">聊天记录文件</button></div>
-        <div class="btn"><button>本地文件</button></div>
-	</div> -->
+    <web-view :src="`http://127.0.0.1:8848/SharePointer/static/webview/file/index.html?token=${token}`" @message="handleMessage"></web-view>
 </template>
 
 <script>
@@ -27,13 +21,12 @@ export default {
     
     methods: {
         handleMessage(e) {
-            console.log('111', e);
             try {
                 let action = e.detail.data[0].action;
                 if (action == 'getMessageFile') {
                     this.getMessageFile();
-                } else if (action.split('!@#$%^!@#$^%')[0] == 'filepath') {
-                    let res = 
+                } else if (action.split('!@#$%^!@#$^%')[0] == 'fileObj') {
+                    let res = JSON.parse(action.split('!@#$%^!@#$^%')[1]);
                     this.firstNext({ token:this.file_token, ...res });
                 }
             } catch (error) {
@@ -47,8 +40,13 @@ export default {
                 type: 'file',
                 extension: ['png', 'PNG', 'JPG', 'jpeg', 'JPEG', 'doc', 'docx', 'DOC', 'DOCX', 'xltm', 'csv', 'xlsx', 'xls', 'XLSX', 'XLS' ],
                 success (res) {
+                    uni.showLoading();
                     that.$api('file').file(res.tempFiles[0].path).then(res => {
+                        uni.hideLoading();
                         that.firstNext({ token:that.file_token, ...res });
+                    }).catch(error => {
+                        uni.hideLoading();
+                        that.$u.toast(error.message||'网络错误');
                     });
                 }
             })

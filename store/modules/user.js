@@ -41,12 +41,12 @@ const actions = {
   },
   setUserinfo({ commit, state }, userinfo) {
     return new Promise((resolve, reject) => {
-      // api('user').setUserinfo(userinfo).then(res => {
-      //   commit('SET_USERINFO', res);
-      //   resolve(res);
-      // }).catch(err => {
-      //   reject(err);
-      // }) 
+      api('user').setUserinfo(userinfo).then(res => {
+        commit('SET_USERINFO', {...state.userinfo, ...userinfo});
+        resolve(res);
+      }).catch(err => {
+        reject(err);
+      }) 
     })
   },
   getOrgAsset({commit, state}) {
