@@ -19,11 +19,12 @@ export default {
             uni.navigateTo({url: '/pages/mine/printerList/index'})
         },
         jumpPrinter() {
+            let taht = this;
             uni.scanCode({
                 success: function (res) {
                     console.log(res);
                     if (res.scanType != 'QR_CODE') {
-                        this.$u.toast('错误的二维码');
+                        taht.$u.toast('错误的二维码');
                         return;
                     }
                     // TODO:这里用的测试打印机数据
