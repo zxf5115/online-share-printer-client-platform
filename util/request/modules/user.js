@@ -34,7 +34,9 @@ export default { // 这里的this指向会变成Request类
             })
         })
     },
-
+    mobile(param) {
+        return this.post('member/mobile', param);
+    },
     setUserinfo(userinfo) {
         return this.post('member/handle', userinfo);
     },

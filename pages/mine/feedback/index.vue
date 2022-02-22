@@ -68,7 +68,7 @@ export default {
             let params = {...this.params, ...{picture: this.params.picture.map(e => {
                 return e.url;
             })}};
-            uni.showLoading();
+            uni.showLoading({title: '加载中...'});
             this.$api('complain').handle(params).then(res => {
                 uni.hideLoading();
                 uni.showToast({

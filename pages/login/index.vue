@@ -55,7 +55,7 @@ export default {
     },
     methods: {
         login(...args) {
-            uni.showLoading();
+            uni.showLoading({title: '加载中...'});
             this.errorFlag = false;
             let param = args[0]||{};
             param.code = this.code;
@@ -82,9 +82,8 @@ export default {
             // })
         },
         async getPhoneNumber(e) {
-            console.log(e);
             if (!e.detail.encryptedData) return;
-            uni.showLoading();
+            uni.showLoading({title: '加载中...'});
             this.$store.dispatch('user/login', {
                 type: 2,
                 data: e.detail.encryptedData,
