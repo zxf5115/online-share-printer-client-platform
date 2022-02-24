@@ -40,7 +40,7 @@ export default {
                 type: 'file',
                 extension: ['png', 'PNG', 'JPG', 'jpeg', 'JPEG', 'doc', 'docx', 'DOC', 'DOCX', 'xltm', 'csv', 'xlsx', 'xls', 'XLSX', 'XLS' ],
                 success (res) {
-                    uni.showLoading({title: '加载中...'});
+                    uni.showLoading({ mask: true, title: '加载中...'});
                     that.$api('file').file(res.tempFiles[0].path).then(res => {
                         uni.hideLoading();
                         that.firstNext({ token:that.file_token, ...res });

@@ -96,7 +96,7 @@ export default {
         },
         requestData() {
             this.refreshFlag = true;
-            uni.showLoading({title: '加载中...'});
+            uni.showLoading({ mask: true, title: '加载中...'});
             this.$api('order').view(this.order_id).then(res => {
                 uni.hideLoading();
                 this.refreshFlag = false;

@@ -52,7 +52,7 @@ export default {
             if (!this.code) this.$u.toast('获取用户信息失败，请检查网络配置');
         },
         submit() {
-            uni.showLoading({title: '加载中...'});
+            uni.showLoading({ mask: true, title: '加载中...'});
             this.$store.dispatch('user/setUserinfo', this.source).then(res => {
                 uni.hideLoading();
                 this.$u.toast('保存成功');
@@ -68,7 +68,7 @@ export default {
         },
         getLocation() {
             let that = this;
-            uni.showLoading({title: '定位中...'});
+            uni.showLoading({ mask: true, title: '定位中...'});
             uni.getLocation({
                 type: 'wgs84',
                 success: function (local) {
@@ -95,7 +95,7 @@ export default {
         },
         getPhoneNumber(e) {
             if (!e.detail.encryptedData) return;
-            uni.showLoading({title: '加载中...'});
+            uni.showLoading({ mask: true, title: '加载中...'});
             this.$api('user').mobile({
                 data: e.detail.encryptedData,
                 iv: e.detail.iv,

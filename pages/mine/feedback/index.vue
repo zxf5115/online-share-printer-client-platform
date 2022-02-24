@@ -68,7 +68,7 @@ export default {
             let params = {...this.params, ...{picture: this.params.picture.map(e => {
                 return e.url;
             })}};
-            uni.showLoading({title: '加载中...'});
+            uni.showLoading({ mask: true, title: '加载中...'});
             this.$api('complain').handle(params).then(res => {
                 uni.hideLoading();
                 uni.showToast({
@@ -93,7 +93,7 @@ export default {
                 console.log(file);
                 queue.push(this.$api('file').picture(file.url));
             });
-            uni.showLoading({
+            uni.showLoading({ mask: true, 
                     title: '上传中'
             });
             Promise.all(queue).then(res => {
