@@ -33,8 +33,8 @@ export default {
             let that = this;
             wx.chooseMessageFile({
                 count: 1,
-                type: 'file',
-                extension: ['png', 'PNG', 'JPG', 'jpeg', 'JPEG', 'doc', 'docx', 'DOC', 'DOCX', 'xltm', 'csv', 'xlsx', 'xls', 'XLSX', 'XLS' ],
+                type: 'all',
+                extension: ['png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG', 'doc', 'docx', 'DOC', 'DOCX', 'xltm', 'csv', 'xlsx', 'xls', 'XLSX', 'XLS' ],
                 success (res) {
                     that.$api('file').file(res.tempFiles[0].path).then(res => {
                         that.firstNext({ token:that.token, ...res });

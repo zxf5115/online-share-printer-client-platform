@@ -65,8 +65,17 @@ export default {
     },
     methods: {
         delClick(item) {
-            console.log(item);
-            
+            uni.showLoading({'title': '加载中...'});
+            this.$api('order').delete(item.id).then(res => {
+                var index = this.l_listData.indexOf(item); 
+                console.log(index,this.l_listData, item );
+                if (index > -1) this.l_listData.splice(index, 1); 
+                this.$set(this, 'l_listData', this.l_listData);
+                console.log(this.l_listData);
+                uni.hideLoading();
+            }).catch(error => {
+                uni.hideLoading();
+            })
         },
         toDetail(item) {
             console.log(item);

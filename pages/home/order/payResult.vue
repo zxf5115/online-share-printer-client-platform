@@ -1,6 +1,6 @@
 <template>
 	<div class="pr" >
-	    <p-nav title="支付失败"/>
+	    <p-nav :title="type ? '支付成功' : '付款失败'"/>
         <div class="ctn fl jc-ctr ai-ctr">
             <image :src="type ? require('@/static/order/pay_success.png') : require('@/static/order/pay_fail.png')">
             <span :style="{
