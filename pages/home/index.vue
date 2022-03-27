@@ -31,8 +31,9 @@ export default {
                     let token = res.result;
                     
                     //'efcsCWI3k2a5XYhr8BQXQtajKPTO21f06+KDFZ5AHepDCt0mtxm/JuVa9DjXGGO7tKmVirtrWPjO32mp0Irt6G3HPSiJsi2HupD2cu4=';
+                    // console.log(token, encodeURIComponent(token));
                     uni.navigateTo({
-                        url: `/pages/home/order/first?token=${token}`
+                        url: `/pages/home/order/first?token=${encodeURIComponent(token)}`
                     });
                 }
             });

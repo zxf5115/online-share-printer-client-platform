@@ -14,7 +14,8 @@ export default {
         }
     },
     onLoad(e) {
-        this.file_token = e.token;
+        this.file_token = decodeURIComponent(e.token||'');
+        console.log(this.file_token)
         // 数据错误就返回上一页
         if (!this.file_token) uni.navigateBack();
     },
