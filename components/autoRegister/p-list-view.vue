@@ -22,7 +22,11 @@
     >
       <!-- 外传slot -->
       <template>
-        <slot name="list"></slot>	
+        <div :style="{
+          'min-height': 'calc(100% - 68rpx)'
+          }">
+          <slot name="list"></slot>	
+        </div>
       </template>
       <!-- 加载更多 -->
   		<u-loadmore v-if="more && !firstLoad && !nodata" :status="loadmore[more - 1]" line  />

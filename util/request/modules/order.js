@@ -18,4 +18,7 @@ export default { // 这里的this指向会变成Request类
     again(id) {
         return this.post('member/order/again', {id});
     },
+    delete(id) {
+        return this.post('member/order/delete', {id});
+    }
 };
