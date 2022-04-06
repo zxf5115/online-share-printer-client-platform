@@ -76,18 +76,19 @@
 			if (count > 1) {
 				return weui.toast('只能选择一个文件');
 			}
+			console.log(fileinput.files[0]);
 			fileToBase64(fileinput.files[0], function(file) {
-				upload(file);
+				upload(file, fileinput.files[0].name);
 			});
 		}
-		function upload(file) {
+		function upload(file, filename) {
 			var formData = new FormData();
 			formData.append("file", file);
 			var loading = weui.loading('loading', {
 				content: '文件上传中',
 			});
 			$.ajax({
-				url: 'https://client.vstown.cc/api/file/file',
+				url: 'https://client.vstown.cc/api/file/file_base64',
 				type: 'POST',
 				data: formData,
 				// 告诉jQuery不要去处理发送的数据
@@ -99,6 +100,8 @@
 					loading.hide(function () { });
 					if (responseStr.status === 200) {
 						console.log("成功" + responseStr);
+						responseStr.data.filename = filename;
+						console.log(responseStr);
 						uni.postMessage({
 							data: {
 								action: 'fileObj!@#$%^!@#$^%'+JSON.stringify(responseStr.data),

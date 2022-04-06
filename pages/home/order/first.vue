@@ -42,9 +42,9 @@ export default {
                 extension: ['png', 'PNG', 'JPG', 'jpeg', 'JPEG', 'doc', 'docx', 'DOC', 'DOCX', 'xltm', 'csv', 'xlsx', 'xls', 'XLSX', 'XLS' ],
                 success (res) {
                     uni.showLoading({ mask: true, title: '加载中...'});
-                    that.$api('file').file(res.tempFiles[0].path).then(res => {
+                    that.$api('file').file(res.tempFiles[0].path).then(response => {
                         uni.hideLoading();
-                        that.firstNext({ token:that.file_token, ...res });
+                        that.firstNext({ token:that.file_token, filename: res.tempFiles[0].name, ...response });
                     }).catch(error => {
                         uni.hideLoading();
                         that.$u.toast(error.message||'网络错误');
