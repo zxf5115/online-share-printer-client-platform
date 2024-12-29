@@ -1,4 +1,4 @@
-## Online share printer client platform(在线共享打印机客服平台端)
+## Online share printer client platform(在线共享打印机客户平台端)
 - Cooperate with the community door shop to provide online scanning code and remote printing.
 - 与小区门口商店合作，提供在线扫码，远程打印。
 
